@@ -47,8 +47,11 @@ public class FileUtils {
 	public File createFile(String path, String fileName) throws IOException{
 		File file = new File(path, fileName);
 		//如果文件存在,则直接返回
-		if(file.exists())
+		if(file.exists()) {
+			file.delete();
+			file.createNewFile();			
 			return file;
+		}
 		//如果文件不存在,则创建目录
 		if(!file.isDirectory())
 			file.mkdirs();
