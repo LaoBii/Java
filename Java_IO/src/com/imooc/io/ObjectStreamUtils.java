@@ -25,7 +25,7 @@ public class ObjectStreamUtils {
 		ObjectInputStream ois = new ObjectInputStream(
 				new FileInputStream(file));
 		
-		ObjectSerializabal obj = (ObjectSerializabal)ois.readObject();
+		Object obj = ois.readObject();
 		System.out.println(obj);
 		ois.close();
 		return obj;
@@ -41,7 +41,8 @@ public class ObjectStreamUtils {
 				new FileOutputStream(file));
 		
 //		oos.writeObject(new ObjectSerializabal("Tom", true ,13));
-		oos.writeObject(new ObjectSerializabal("Shaly", false ,14));
+//		oos.writeObject(new ObjectSerializabal("Shaly", false ,14));
+		oos.writeObject(new SonOfObjectSerializabal());
 		oos.close();
 	}
 }

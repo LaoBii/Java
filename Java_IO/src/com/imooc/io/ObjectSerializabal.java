@@ -2,7 +2,7 @@ package com.imooc.io;
 
 import java.io.Serializable;
 
-public class ObjectSerializabal implements Serializable {
+public class ObjectSerializabal extends FatOfObjectSerializabal implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -14,6 +14,7 @@ public class ObjectSerializabal implements Serializable {
 
 	public ObjectSerializabal() {
 		super();
+		System.out.println("ObjectSerializabal 构造方法");
 	}
 	
 	public ObjectSerializabal(String name, boolean isFalme, int age) {
@@ -21,6 +22,7 @@ public class ObjectSerializabal implements Serializable {
 		this.name = name;
 		this.isFalme = isFalme;
 		this.age = age;
+		System.out.println("ObjectSerializabal 构造方法");
 	}
 
 
