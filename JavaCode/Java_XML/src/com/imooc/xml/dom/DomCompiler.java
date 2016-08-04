@@ -6,6 +6,13 @@ import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -20,6 +27,33 @@ import org.xml.sax.SAXException;
   * @date 2016年8月2日 下午9:46:59
  */
 public class DomCompiler {
+	/**
+	 * Dom 方式根据对象创建XML
+	 * @throws ParserConfigurationException 
+	 * @throws TransformerException 
+	 */
+	public void createDocByObject() throws ParserConfigurationException, TransformerException { 
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = dbf.newDocumentBuilder();
+		
+		Document doc = docBuilder.newDocument();
+		doc.setXmlStandalone(true);
+		//添加根节点
+		Element bookstore = doc.createElement("bookstore");
+		Element book = doc.createElement("book");
+		Element name = doc.createElement("name");
+		name.setTextContent("书籍1");
+		book.setAttribute("id", "1");
+		book.appendChild(name);
+		bookstore.appendChild(book);
+		doc.appendChild(bookstore);
+		
+		TransformerFactory tff = TransformerFactory.newInstance();
+		Transformer tf = tff.newTransformer();
+		tf.setOutputProperty(OutputKeys.INDENT, "yes");
+		tf.transform(new DOMSource(doc), new StreamResult(new File("file\\bookCreate.xml")));
+	}
+	
 	/**
 	 * Dom 方式解析
 	 * @throws IOException 
