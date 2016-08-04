@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.dom4j.DocumentException;
-import org.jdom2.JDOMException;
+import org.jdom.JDOMException;
 import org.xml.sax.SAXException;
 
 import com.imooc.xml.dom.DomCompiler;
